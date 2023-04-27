@@ -118,7 +118,8 @@ button[type="button"] {
         const storedPassword = localStorage.getItem(username);
         if (password === storedPassword) {
           alert('로그인 되었습니다.');
-          window.location.href = 'http://127.0.0.1:5501/todolist/test.html';
+          window.location.href = 'todolist/test.html';
+           
           // 로그인 성공 시 처리할 작업 추가
           loginForm.reset();
         } else {
