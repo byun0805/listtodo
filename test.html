@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>투두 리스트</title>
+    <title>할 일 </title>
     <style>
       ul {
         list-style-type: none;
@@ -10,7 +10,7 @@
       li {
         margin: 10px 0;
         padding: 15px;
-        background-color: #8bb7f0;
+        background-color: #36cced;
       }
       .completed {
         text-decoration: line-through;
@@ -70,19 +70,26 @@
         });
       }
       
-      const addTaskBtn = document.getElementById('add-task');
-      addTaskBtn.addEventListener('click', addTask);
 
-      function addTask() {
-        const taskInput = document.getElementById('task-input');
-        const taskName = taskInput.value.trim();
-        if (taskName !== '') { 
-          tasks.push({ name: taskName, completed: false });
-          localStorage.setItem('tasks', JSON.stringify(tasks));
-          taskInput.value = '';
-          renderTasks();
-        }
-      }
+const addTaskBtn = document.getElementById('add-task');
+const taskInput = document.getElementById('task-input');
+
+addTaskBtn.addEventListener('click', addTask);
+taskInput.addEventListener('keydown', function(event) {
+  if (event.key === 'Enter') {
+    addTask();
+  }
+});
+
+function addTask() {
+  const taskName = taskInput.value.trim();
+  if (taskName !== '') { 
+    tasks.push({ name: taskName, completed: false });
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+    taskInput.value = '';
+    renderTasks();
+  }
+}
 
       // 화면 초기화 시 할 일 목록을 보여줍니다.
       renderTasks();
